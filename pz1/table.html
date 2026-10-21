@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8">
+		<title>Таблица блюд — Блюда мира</title>
+	</head>
+	<body bgcolor="#fffaf0" text="#222222" link="#8b2500" vlink="#5c3317">
+		<header>
+			<h1><a href="index.html">Блюда мира</a></h1>
+			<p><i>Знаменитые блюда разных стран: история, состав и цифры</i></p>
+			<nav>
+				<ul>
+					<li><a href="index.html">Главная</a></li>
+					<li><a href="borsch.html">Борщ</a></li>
+					<li><b>Таблица блюд</b></li>
+				</ul>
+			</nav>
+		</header>
+		<hr>
+		<main>
+			<h2>Таблица блюд</h2>
+			<p>
+				В таблице собраны данные о блюдах разных стран. С помощью форм ниже можно настроить график, отфильтровать и отсортировать данные.
+			</p>
+			<details open>
+				<summary><b>График</b></summary>
+				<fieldset>
+					<legend>Значение по оси OX</legend>
+					<input type="radio" id="OxCategory" name="ox" value="category" checked>
+					<label for="OxCategory">Категория</label><br>
+					<input type="radio" id="OxCountry" name="ox" value="country">
+					<label for="OxCountry">Страна</label><br>
+					<input type="radio" id="OxIngredient" name="ox" value="ingredient">
+					<label for="OxIngredient">Основной ингредиент</label>
+				</fieldset>
+				<fieldset>
+					<legend>Значение по оси OY</legend>
+					<input type="checkbox" id="OyMaxKcal" name="oy" value="maxKcal" checked>
+					<label for="OyMaxKcal">Максимальная калорийность</label><br>
+					<input type="checkbox" id="OyMinKcal" name="oy" value="minKcal">
+					<label for="OyMinKcal">Минимальная калорийность</label><br>
+					<input type="checkbox" id="OyAvgTime" name="oy" value="avgTime">
+					<label for="OyAvgTime">Средняя калорийность</label><br>
+				</fieldset>
+				<p>
+					<input type="button" value="Построить">
+				</p>
+				<p><i>Здесь будет график.</i></p>
+			</details>
+			<details open>
+				<summary><b>Фильтр</b></summary>
+				<p>
+					<label for="FilterName">Название:</label>
+					<input type="text" id="FilterName" name="name" size="30" placeholder="например, борщ">
+				</p>
+				<p>
+					<label for="FilterCategory">Категория:</label>
+					<select id="FilterCategory" name="category">
+						<option value="" selected>Все</option>
+						<option value="pastry">Выпечка</option>
+						<option value="dessert">Десерт</option>
+						<option value="snack">Закуска</option>
+						<option value="mainCourse">Основное блюдо</option>
+						<option value="salad">Салат</option>
+						<option value="soup">Суп</option>
+					</select>
+				</p>
+				<p>
+					<label for="FilterCountry">Страна:</label>
+					<input type="text" id="FilterCountry" name="country" size="25">
+				</p>
+				<p>
+					<label for="FilterIngredient">Основной ингредиент:</label>
+					<input type="text" id="FilterIngredient" name="ingredient" size="25">
+				</p>
+				<p>
+					Время приготовления, мин:
+					<label for="FilterTimeFrom">от</label>
+					<input type="number" id="FilterTimeFrom" name="timeFrom" min="0" max="1000">
+					<label for="FilterTimeTo">до</label>
+					<input type="number" id="FilterTimeTo" name="timeTo" min="0" max="1000">
+				</p>
+				<p>
+					Калорийность, ккал:
+					<label for="FilterKcalFrom">от</label>
+					<input type="number" id="FilterKcalFrom" name="kcalFrom" min="0" max="1000">
+					<label for="FilterKcalTo">до</label>
+					<input type="number" id="FilterKcalTo" name="kcalTo" min="0" max="1000">
+				</p>
+				<p>
+					<input type="button" value="Найти">
+					<input type="button" value="Очистить фильтры">
+				</p>
+			</details>
+			<details open>
+				<summary><b>Сортировка</b></summary>
+				<p>
+					<label for="Sort1">Первый уровень:</label>
+					<select id="Sort1" name="sort1">
+						<option value="none" selected>Нет</option>
+						<option value="0">Название</option>
+						<option value="1">Категория</option>
+						<option value="2">Страна</option>
+						<option value="3">Основной ингредиент</option>
+						<option value="4">Время приготовления, мин</option>
+						<option value="5">Калорийность, ккал на 100 г</option>
+					</select>
+					<input type="checkbox" id="Desc1" name="desc1">
+					<label for="Desc1">по убыванию</label>
+				</p>
+				<p>
+					<label for="Sort2">Второй уровень:</label>
+					<select id="Sort2" name="sort2">
+						<option value="none" selected>Нет</option>
+						<option value="0">Название</option>
+						<option value="1">Категория</option>
+						<option value="2">Страна</option>
+						<option value="3">Основной ингредиент</option>
+						<option value="4">Время приготовления, мин</option>
+						<option value="5">Калорийность, ккал на 100 г</option>
+					</select>
+					<input type="checkbox" id="Desc2" name="desc2">
+					<label for="Desc2">по убыванию</label>
+				</p>
+				<p>
+					<label for="Sort3">Третий уровень:</label>
+					<select id="Sort3" name="sort3">
+						<option value="none" selected>Нет</option>
+						<option value="0">Название</option>
+						<option value="1">Категория</option>
+						<option value="2">Страна</option>
+						<option value="3">Основной ингредиент</option>
+						<option value="4">Время приготовления, мин</option>
+						<option value="5">Калорийность, ккал на 100 г</option>
+					</select>
+					<input type="checkbox" id="Desc3" name="desc3">
+					<label for="Desc3">по убыванию</label>
+				</p>
+				<p>
+					<input type="button" value="Сортировать">
+					<input type="button" value="Сбросить сортировку">
+				</p>
+			</details>
+			<hr>
+			<table id="Dishes" border="1" cellpadding="5" cellspacing="0" width="100%">
+				<caption><b>Блюда мира: 60 блюд</b> (время и калорийность указаны приблизительно)</caption>
+				<thead>
+					<tr>
+						<th bgcolor="#f4d9b0">Название</th>
+						<th bgcolor="#f4d9b0">Категория</th>
+						<th bgcolor="#f4d9b0">Страна</th>
+						<th bgcolor="#f4d9b0">Основной ингредиент</th>
+						<th bgcolor="#f4d9b0">Время приготовления, мин</th>
+						<th bgcolor="#f4d9b0">Калорийность, ккал на 100 г</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><a href="borsch.html">Борщ</a></td>
+						<td>Суп</td>
+						<td>Украина</td>
+						<td>Свёкла</td>
+						<td align="right">120</td>
+						<td align="right">50</td>
+					</tr>
+					<tr bgcolor="#fff3e0">
+						<td>Щи</td>
+						<td>Суп</td>
+						<td>Россия</td>
+						<td>Капуста</td>
+						<td align="right">90</td>
+						<td align="right">35</td>
+					</tr>
+					<tr>
+						<td>Солянка мясная</td>
+						<td>Суп</td>
+						<td>Россия</td>
+						<td>Мясо</td>
+						<td align="right">90</td>
+						<td align="right">70</td>
+					</tr>
+					<tr bgcolor="#fff3e0">
+						<td>Уха</td>
+						<td>Суп</td>
+						<td>Россия</td>
+						<td>Рыба</td>
+						<td align="right">60</td>
+						<td align="right">45</td>
+					</tr>
+					<tr>
+						<td>Окрошка</td>
+						<td>Суп</td>
+						<td>Россия</td>
+						<td>Квас</td>
+						<td align="right">30</td>
+						<td align="right">60</td>
+					</tr>
+					<tr bgcolor="#fff3e0">
+						<td>Харчо</td>
+						<td>Суп</td>
+						<td>Грузия</td>
+						<td>Говядина</td>
+						<td align="right">120</td>
+						<td align="right">80</td>
+					</tr>
+					<tr>
+						<td>Том ям</td>
+						<td>Суп</td>
+						<td>Таиланд</td>
+						<td>Креветки</td>
+						<td align="right">40</td>
+						<td align="right">45</td>
+					</tr>
+					<tr bgcolor="#fff3e0">
+						<td>Мисо-суп</td>
+						<td>Суп</td>
+						<td>Япония</td>
+						<td>Мисо-паста</td>
+						<td align="right">20</td>
+						<td align="right">40</td>
+					</tr>
+					<tr>
+						<td>Рамен</td>
+						<td>Суп</td>
+						<td>Япония</td>
+						<td>Лапша</td>
+						<td align="right">180</td>
+						<td align="right">90</td>
+					</tr>
+					<tr bgcolor="#fff3e0">
+						<td>Фо бо</td>
+						<td>Суп</td>
+						<td>Вьетнам</td>
+						<td>Говядина</td>
+						<td align="right">240</td>
+						<td align="right">60</td>
+					</tr>
+					<tr>
+						<td>Гаспачо</td>
+						<td>Суп</td>
+						<td>Испания</td>
+						<td>Томаты</td>
+						<td align="right">20</td>
+						<td align="right">35</td>
+					</tr>
+					<tr bgcolor="#fff3e0">
+						<td>Луковый суп</td>
+						<td>Суп</td>
+						<td>Франция</td>
+						<td>Лук</td>
+						<td align="right">70</td>
+						<td align="right">55</td>
+					</tr>
+					<tr>
+						<td>Минестроне</td>
+						<td>Суп</td>
+						<td>Италия</td>
+						<td>Овощи</td>
+						<td align="right">60</td>
+						<td align="right">40</td>
+					</tr>
+					<tr bgcolor="#fff3e0">
+						<td>Гуляш</td>
+						<td>Суп</td>
+						<td>Венгрия</td>
+						<td>Говядина</td>
+						<td align="right">120</td>
+						<td align="right">100</td>
+					</tr>
+					<tr>
+						<td>Пельмени</td>
+						<td>Основное блюдо</td>
+						<td>Россия</td>
+						<td>Мясной фарш</td>
+						<td align="right">90</td>
+						<td align="right">250</td>
+					</tr>
+					<tr bgcolor="#fff3e0">
+						<td>Бефстроганов</td>
+						<td>Основное блюдо</td>
+						<td>Россия</td>
+						<td>Говядина</td>
+						<td align="right">40</td>
+						<td align="right">180</td>
+					</tr>
+					<tr>
+						<td>Голубцы</td>
+						<td>Основное блюдо</td>
+						<td>Россия</td>
+						<td>Капуста</td>
+						<td align="right">90</td>
+						<td align="right">110</td>
+					</tr>
+					<tr bgcolor="#fff3e0">
+						<td>Плов</td>
+						<td>Основное блюдо</td>
+						<td>Узбекистан</td>
+						<td>Рис</td>
+						<td align="right">120</td>
+						<td align="right">200</td>
+					</tr>
+					<tr>
+						<td>Манты</td>
+						<td>Основное блюдо</td>
+						<td>Узбекистан</td>
+						<td>Баранина</td>
+						<td align="right">90</td>
+						<td align="right">220</td>
+					</tr>
+					<tr bgcolor="#fff3e0">
+						<td>Лагман</td>
+						<td>Основное блюдо</td>
+						<td>Узбекистан</td>
+						<td>Лапша</td>
+						<td align="right">80</td>
+						<td align="right">150</td>
+					</tr>
+					<tr>
+						<td>Хинкали</td>
+						<td>Основное блюдо</td>
+						<td>Грузия</td>
+						<td>Мясной фарш</td>
+						<td align="right">90</td>
+						<td align="right">230</td>
+					</tr>
+					<tr bgcolor="#fff3e0">
+						<td>Долма</td>
+						<td>Основное блюдо</td>
+						<td>Армения</td>
+						<td>Виноградные листья</td>
+						<td align="right">90</td>
+						<td align="right">150</td>
+					</tr>
+					<tr>
+						<td>Паста карбонара</td>
+						<td>Основное блюдо</td>
+						<td>Италия</td>
+						<td>Спагетти</td>
+						<td align="right">25</td>
+						<td align="right">330</td>
+					</tr>
+					<tr bgcolor="#fff3e0">
+						<td>Лазанья</td>
+						<td>Основное блюдо</td>
+						<td>Италия</td>
+						<td>Тесто</td>
+						<td align="right">90</td>
+						<td align="right">160</td>
+					</tr>
+					<tr>
+						<td>Ризотто</td>
+						<td>Основное блюдо</td>
+						<td>Италия</td>
+						<td>Рис</td>
+						<td align="right">40</td>
+						<td align="right">140</td>
+					</tr>
+					<tr bgcolor="#fff3e0">
+						<td>Паэлья</td>
+						<td>Основное блюдо</td>
+						<td>Испания</td>
+						<td>Рис</td>
+						<td align="right">60</td>
+						<td align="right">160</td>
+					</tr>
+					<tr>
+						<td>Суши</td>
+						<td>Основное блюдо</td>
+						<td>Япония</td>
+						<td>Рис</td>
+						<td align="right">60</td>
+						<td align="right">150</td>
+					</tr>
+					<tr bgcolor="#fff3e0">
+						<td>Темпура</td>
+						<td>Основное блюдо</td>
+						<td>Япония</td>
+						<td>Креветки</td>
+						<td align="right">30</td>
+						<td align="right">220</td>
+					</tr>
+					<tr>
+						<td>Пад тай</td>
+						<td>Основное блюдо</td>
+						<td>Таиланд</td>
+						<td>Рисовая лапша</td>
+						<td align="right">30</td>
+						<td align="right">180</td>
+					</tr>
+					<tr bgcolor="#fff3e0">
+						<td>Утка по-пекински</td>
+						<td>Основное блюдо</td>
+						<td>Китай</td>
+						<td>Утка</td>
+						<td align="right">240</td>
+						<td align="right">340</td>
+					</tr>
+					<tr>
+						<td>Курица гунбао</td>
+						<td>Основное блюдо</td>
+						<td>Китай</td>
+						<td>Курица</td>
+						<td align="right">30</td>
+						<td align="right">160</td>
+					</tr>
+					<tr bgcolor="#fff3e0">
+						<td>Говядина по-бургундски</td>
+						<td>Основное блюдо</td>
+						<td>Франция</td>
+						<td>Говядина</td>
+						<td align="right">210</td>
+						<td align="right">140</td>
+					</tr>
+					<tr>
+						<td>Рататуй</td>
+						<td>Основное блюдо</td>
+						<td>Франция</td>
+						<td>Овощи</td>
+						<td align="right">75</td>
+						<td align="right">60</td>
+					</tr>
+					<tr bgcolor="#fff3e0">
+						<td>Фиш-энд-чипс</td>
+						<td>Основное блюдо</td>
+						<td>Великобритания</td>
+						<td>Треска</td>
+						<td align="right">40</td>
+						<td align="right">230</td>
+					</tr>
+					<tr>
+						<td>Шницель по-венски</td>
+						<td>Основное блюдо</td>
+						<td>Австрия</td>
+						<td>Телятина</td>
+						<td align="right">30</td>
+						<td align="right">260</td>
+					</tr>
+					<tr bgcolor="#fff3e0">
+						<td>Тако</td>
+						<td>Основное блюдо</td>
+						<td>Мексика</td>
+						<td>Кукурузная лепёшка</td>
+						<td align="right">30</td>
+						<td align="right">220</td>
+					</tr>
+					<tr>
+						<td>Буррито</td>
+						<td>Основное блюдо</td>
+						<td>Мексика</td>
+						<td>Пшеничная лепёшка</td>
+						<td align="right">30</td>
+						<td align="right">200</td>
+					</tr>
+					<tr bgcolor="#fff3e0">
+						<td>Курица тикка масала</td>
+						<td>Основное блюдо</td>
+						<td>Индия</td>
+						<td>Курица</td>
+						<td align="right">60</td>
+						<td align="right">150</td>
+					</tr>
+					<tr>
+						<td>Бирьяни</td>
+						<td>Основное блюдо</td>
+						<td>Индия</td>
+						<td>Рис</td>
+						<td align="right">90</td>
+						<td align="right">180</td>
+					</tr>
+					<tr bgcolor="#fff3e0">
+						<td>Пибимпап</td>
+						<td>Основное блюдо</td>
+						<td>Корея</td>
+						<td>Рис</td>
+						<td align="right">45</td>
+						<td align="right">130</td>
+					</tr>
+					<tr>
+						<td>Греческий салат</td>
+						<td>Салат</td>
+						<td>Греция</td>
+						<td>Овощи</td>
+						<td align="right">15</td>
+						<td align="right">90</td>
+					</tr>
+					<tr bgcolor="#fff3e0">
+						<td>Салат Цезарь</td>
+						<td>Салат</td>
+						<td>Мексика</td>
+						<td>Салат ромэн</td>
+						<td align="right">20</td>
+						<td align="right">190</td>
+					</tr>
+					<tr>
+						<td>Оливье</td>
+						<td>Салат</td>
+						<td>Россия</td>
+						<td>Картофель</td>
+						<td align="right">60</td>
+						<td align="right">190</td>
+					</tr>
+					<tr bgcolor="#fff3e0">
+						<td>Винегрет</td>
+						<td>Салат</td>
+						<td>Россия</td>
+						<td>Свёкла</td>
+						<td align="right">60</td>
+						<td align="right">80</td>
+					</tr>
+					<tr>
+						<td>Табуле</td>
+						<td>Салат</td>
+						<td>Ливан</td>
+						<td>Булгур</td>
+						<td align="right">30</td>
+						<td align="right">120</td>
+					</tr>
+					<tr bgcolor="#fff3e0">
+						<td>Хумус</td>
+						<td>Закуска</td>
+						<td>Ливан</td>
+						<td>Нут</td>
+						<td align="right">30</td>
+						<td align="right">170</td>
+					</tr>
+					<tr>
+						<td>Фалафель</td>
+						<td>Закуска</td>
+						<td>Египет</td>
+						<td>Нут</td>
+						<td align="right">40</td>
+						<td align="right">330</td>
+					</tr>
+					<tr bgcolor="#fff3e0">
+						<td>Брускетта</td>
+						<td>Закуска</td>
+						<td>Италия</td>
+						<td>Хлеб</td>
+						<td align="right">15</td>
+						<td align="right">200</td>
+					</tr>
+					<tr>
+						<td>Пицца Маргарита</td>
+						<td>Выпечка</td>
+						<td>Италия</td>
+						<td>Тесто</td>
+						<td align="right">30</td>
+						<td align="right">250</td>
+					</tr>
+					<tr bgcolor="#fff3e0">
+						<td>Хачапури по-аджарски</td>
+						<td>Выпечка</td>
+						<td>Грузия</td>
+						<td>Сыр</td>
+						<td align="right">60</td>
+						<td align="right">300</td>
+					</tr>
+					<tr>
+						<td>Блины</td>
+						<td>Выпечка</td>
+						<td>Россия</td>
+						<td>Мука</td>
+						<td align="right">40</td>
+						<td align="right">230</td>
+					</tr>
+					<tr bgcolor="#fff3e0">
+						<td>Сырники</td>
+						<td>Десерт</td>
+						<td>Россия</td>
+						<td>Творог</td>
+						<td align="right">30</td>
+						<td align="right">220</td>
+					</tr>
+					<tr>
+						<td>Тирамису</td>
+						<td>Десерт</td>
+						<td>Италия</td>
+						<td>Маскарпоне</td>
+						<td align="right">30</td>
+						<td align="right">290</td>
+					</tr>
+					<tr bgcolor="#fff3e0">
+						<td>Чизкейк Нью-Йорк</td>
+						<td>Десерт</td>
+						<td>США</td>
+						<td>Сливочный сыр</td>
+						<td align="right">90</td>
+						<td align="right">320</td>
+					</tr>
+					<tr>
+						<td>Пахлава</td>
+						<td>Десерт</td>
+						<td>Турция</td>
+						<td>Грецкие орехи</td>
+						<td align="right">90</td>
+						<td align="right">430</td>
+					</tr>
+					<tr bgcolor="#fff3e0">
+						<td>Крем-брюле</td>
+						<td>Десерт</td>
+						<td>Франция</td>
+						<td>Сливки</td>
+						<td align="right">60</td>
+						<td align="right">300</td>
+					</tr>
+					<tr>
+						<td>Яблочный штрудель</td>
+						<td>Десерт</td>
+						<td>Австрия</td>
+						<td>Яблоки</td>
+						<td align="right">90</td>
+						<td align="right">260</td>
+					</tr>
+					<tr bgcolor="#fff3e0">
+						<td>Моти</td>
+						<td>Десерт</td>
+						<td>Япония</td>
+						<td>Рисовая мука</td>
+						<td align="right">40</td>
+						<td align="right">230</td>
+					</tr>
+					<tr>
+						<td>Чуррос</td>
+						<td>Десерт</td>
+						<td>Испания</td>
+						<td>Тесто</td>
+						<td align="right">30</td>
+						<td align="right">400</td>
+					</tr>
+					<tr bgcolor="#fff3e0">
+						<td>Паштел-де-ната</td>
+						<td>Десерт</td>
+						<td>Португалия</td>
+						<td>Заварной крем</td>
+						<td align="right">60</td>
+						<td align="right">300</td>
+					</tr>
+				</tbody>
+			</table>
+		</main>
+		<hr>
+		<footer>
+			<p><small>Разработчик: студент группы Б9124-09.03.04(6), Мороз Михаил.<br>
+			Учебный проект «Блюда мира», ДВФУ, 2026.</small></p>
+		</footer>
+	</body>
+</html>
